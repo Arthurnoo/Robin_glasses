@@ -23,6 +23,7 @@
             gap: 40px;
             background-color: #006039;
             padding: 20px;
+            height: 80px;
             border-radius: 40px;
             margin-top: 30px;
             width: 90%;
@@ -65,35 +66,37 @@
 
         /* Carrousel */
         .carousel-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            margin-top: 50px;
-            border-radius: 15px;
-        }
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: 50px;
+    border-radius: 15px;
+}
 
-        .carousel-track {
-            display: flex;
-            gap: 10px;
-            transition: transform 0.5s ease-in-out;
-        }
+.carousel-track {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.5s ease-in-out;
+}
 
-        .carousel-item {
-            min-width: 33.3%;
-            height: 500px;
-            background-color: #006039;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
-            overflow: hidden;
-        }
+.carousel-item {
+    min-width: 33.3%;
+    height: 500px; /* Ajuste si nécessaire pour garder un bon ratio */
+    background-color: #006039;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+}
 
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.carousel-item img {
+    width: 100%;
+    height: auto;  /* Permet à l'image de garder son ratio 4:3 */
+    max-height: 100%; /* Ne dépasse pas la hauteur du conteneur */
+    object-fit: contain; /* Garde l'image complète sans la couper */
+}
+
     </style>
 </head>
 <body>
