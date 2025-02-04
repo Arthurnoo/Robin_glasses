@@ -50,13 +50,13 @@
 <!-- Script Voiceflow pour intégrer le nouveau chatbot avec extensions -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script type="module">
-      import { DisableInputExtension, VideoExtension, TimerExtension, FormExtension, MapExtension, FileUploadExtension, KBUploadExtension, DateExtension, ConfettiExtension, FeedbackExtension } from '/extensions.js';
+      import { DisableInputExtension, VideoExtension, TimerExtension, FormExtension, MapExtension, FileUploadExtension, KBUploadExtension, DateExtension, ConfettiExtension, FeedbackExtension } from './extensions.js';
 
       (function(d, t) {
           var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
           v.onload = function() {
             window.voiceflow.chat.load({
-              verify: { projectID: '679eb021485466595303ae72' }, // Nouveau chatbot Voiceflow
+              verify: { projectID: '679eb021485466595303ae72' },
               url: 'https://general-runtime.voiceflow.com',
               versionID: 'production',
               user: {
