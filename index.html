@@ -69,38 +69,37 @@
         }
 
 /* Carrousel 3:4 */
-.carousel-container {
-    width: 240px; /* Largeur ajustée pour respecter le ratio 3:4 avec une hauteur de 80px */
-    overflow: hidden;
-    position: relative;
-    margin-top: 20px;
-    border-radius: 15px;
-    height: 80px; /* Hauteur fixe */
-}
+        .carousel-container {
+            width: 80%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+            border-radius: 15px;
+            height: 75vh; /* Ajuste la hauteur pour respecter 3:4 */
+        }
 
-.carousel-track {
-    display: flex;
-    gap: 10px;
-    transition: transform 0.5s ease-in-out;
-}
+        .carousel-track {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
 
-.carousel-item {
-    min-width: 100%; /* Un seul élément visible à la fois */
-    height: 100%; /* Hauteur fixe pour garder le ratio */
-    background-color: #006039;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    overflow: hidden;
-}
+        .carousel-item {
+            min-width: 33.3%;
+            height: 100%; /* Ajuste pour respecter 3:4 */
+            background-color: #006039;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
 
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Remplit l’espace en gardant l’image entière */
-}
-
+        .carousel-item img {
+            width: auto;
+            height: 100%;  /* Remplit la hauteur et garde le ratio */
+            object-fit: contain; /* Assure que l'image reste entière */
+        }
     </style>
 </head>
 <body>
