@@ -27,6 +27,7 @@
             margin-top: 20px;
             width: 80%;
             max-width: 600px;
+            position: relative;
         }
 
         .search-item {
@@ -35,7 +36,6 @@
             padding: 10px 15px;
             cursor: pointer;
             border-radius: 10px;
-            position: relative;
         }
 
         .search-item:hover {
@@ -43,12 +43,12 @@
         }
 
         /* Boîte déroulante */
-        .dropdown {
+        #dropdown-container {
             display: none;
             position: absolute;
-            top: 40px;
+            top: 100%;
             left: 0;
-            width: 150px;
+            width: 100%;
             background: white;
             color: black;
             border-radius: 10px;
@@ -57,10 +57,8 @@
             font-size: 14px;
             font-weight: normal;
             z-index: 10;
-        }
-
-        .search-item:hover .dropdown {
-            display: block;
+            text-align: center;
+            margin-top: 5px; /* Petit espace entre la barre et le rectangle */
         }
 
         model-viewer {
@@ -74,19 +72,14 @@
 
     <!-- Barre de recherche -->
     <div id="search-bar">
-        <div class="search-item">Les démarches
-            <div class="dropdown">Texte 1</div>
-        </div>
-        <div class="search-item">Les documents
-            <div class="dropdown">Texte 2</div>
-        </div>
-        <div class="search-item">Qui ?
-            <div class="dropdown">Texte 3</div>
-        </div>
-        <div class="search-item">Quand ?
-            <div class="dropdown">Texte 4</div>
-        </div>
+        <div class="search-item" data-text="Texte 1">Les démarches</div>
+        <div class="search-item" data-text="Texte 2">Les documents</div>
+        <div class="search-item" data-text="Texte 3">Qui ?</div>
+        <div class="search-item" data-text="Texte 4">Quand ?</div>
     </div>
+
+    <!-- Zone de texte sous la barre de recherche -->
+    <div id="dropdown-container"></div>
 
     <model-viewer 
         src="ray-ban.glb" 
@@ -97,6 +90,47 @@
         shadow-intensity="1" 
         exposure="1.2">
     </model-viewer>
+
+    <script>
+        const searchItems = document.querySelectorAll('.search-item');
+        const dropdown = document.getElementById('dropdown-container');
+        const searchBar = document.getElementById('search-bar');
+
+        searchItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                dropdown.textContent = item.getAttribute('data-text');
+                dropdown.style.display = 'block';
+            });
+
+            item.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    if (!dropdown.matches(':hover')) {
+                        dropdown.style.display = 'none';
+                    }
+                }, 200);
+            });
+        });
+
+        dropdown.addEventListener('mouseenter', () => {
+            dropdown.style.display = 'block';
+        });
+
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.style.display = 'none';
+        });
+
+        // Positionner la boîte sous la barre de recherche
+        function positionDropdown() {
+            const rect = searchBar.getBoundingClientRect();
+            dropdown.style.width = `${rect.width}px`;
+            dropdown.style.left = `${rect.left}px`;
+        }
+
+        window.addEventListener('resize', positionDropdown);
+        window.addEventListener('load', positionDropdown);
+    </script>
+
+</body>
 
 <!-- Script Voiceflow pour intégrer le nouveau chatbot avec extensions -->
     <script type="module">
