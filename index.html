@@ -28,14 +28,15 @@
             width: 80%;
             max-width: 600px;
             position: relative;
+            color: white;
+            font-weight: bold;
         }
 
         .search-item {
-            color: white;
-            font-weight: bold;
             padding: 10px 15px;
             cursor: pointer;
             border-radius: 10px;
+            position: relative;
         }
 
         .search-item:hover {
@@ -56,9 +57,9 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             font-size: 14px;
             font-weight: normal;
-            z-index: 10;
             text-align: center;
-            margin-top: 5px; /* Petit espace entre la barre et le rectangle */
+            margin-top: 5px; /* Espace entre la barre et le rectangle */
+            z-index: 10;
         }
 
         model-viewer {
@@ -124,14 +125,12 @@
             const rect = searchBar.getBoundingClientRect();
             dropdown.style.width = `${rect.width}px`;
             dropdown.style.left = `${rect.left}px`;
+            dropdown.style.top = `${rect.bottom + 5}px`; // Petit espace sous la barre
         }
 
         window.addEventListener('resize', positionDropdown);
         window.addEventListener('load', positionDropdown);
     </script>
-
-</body>
-
 <!-- Script Voiceflow pour intégrer le nouveau chatbot avec extensions -->
     <script type="module">
   import { DisableInputExtension, VideoExtension, TimerExtension, FormExtension, MapExtension, FileUploadExtension, KBUploadExtension, DateExtension, ConfettiExtension, FeedbackExtension } from './extensions.js';
