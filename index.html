@@ -52,7 +52,6 @@
           },
           render: {
             mode: 'overlay',
-            open: true, // Ouvre automatiquement
             position: "bottom-right",
             theme: {
                 primaryColor: "#0E3925",
@@ -77,11 +76,19 @@
             ],
           },
         }).then(() => {
-          // Ouvre le chatbot de manière proactive avec un message
-          window.voiceflow.chat.proactive.push({
-            type: 'text',
-            payload: { message: '👋 Bonjour ! Comment puis-je vous aider ?' }
-          });
+          // Attendre que le chatbot soit chargé avant d'ouvrir et envoyer un message
+          setTimeout(() => {
+            // Ouvre automatiquement le chatbot
+            window.voiceflow.chat.open();
+
+            // Envoie un message proactif après l’ouverture
+            setTimeout(() => {
+              window.voiceflow.chat.proactive.push({
+                type: 'text',
+                payload: { message: '👋 Bonjour ! Comment puis-je vous aider ?' }
+              });
+            }, 1000); // Attendre une seconde pour éviter les erreurs
+          }, 2000); // Délai pour s'assurer du chargement complet
         });
       };
 
@@ -90,6 +97,7 @@
       s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
+
 
     
 </body>
