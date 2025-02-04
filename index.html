@@ -22,23 +22,27 @@
             justify-content: center;
             gap: 40px;
             background-color: #006039;
-            padding: 20px;
-            height: 40px;
+            padding: 10px; /* Rend la barre plus fine */
+            height: 30px; /* Diminue la hauteur */
             border-radius: 40px;
-            margin-top: 30px;
+            margin-top: 10px; /* Remonte la barre */
             width: 90%;
             max-width: 1000px;
             position: relative;
             color: white;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 20px;
+            align-items: center; /* Centre le texte verticalement */
         }
 
         .search-item {
-            padding: 15px 25px;
+            padding: 8px 20px; /* Ajuste l'espacement */
             cursor: pointer;
             border-radius: 15px;
             position: relative;
+            display: flex;
+            align-items: center; /* Centre le texte verticalement */
+            justify-content: center; /* Centre horizontalement */
         }
 
         .search-item:hover {
@@ -60,43 +64,42 @@
             font-size: 20px;
             font-weight: normal;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 5px;
             z-index: 10;
         }
 
-        /* Carrousel */
+        /* Carrousel 3:4 */
         .carousel-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    margin-top: 50px;
-    border-radius: 15px;
-}
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+            border-radius: 15px;
+            height: 75vh; /* Ajuste la hauteur pour respecter 3:4 */
+        }
 
-.carousel-track {
-    display: flex;
-    gap: 10px;
-    transition: transform 0.5s ease-in-out;
-}
+        .carousel-track {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
 
-.carousel-item {
-    min-width: 33.3%;
-    height: 400px; /* Ajuste si nécessaire pour garder un bon ratio */
-    background-color: #006039;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    overflow: hidden;
-}
+        .carousel-item {
+            min-width: 33.3%;
+            height: 100%; /* Ajuste pour respecter 3:4 */
+            background-color: #006039;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
 
-.carousel-item img {
-    width: 100%;
-    height: auto;  /* Permet à l'image de garder son ratio 4:3 */
-    max-height: 100%; /* Ne dépasse pas la hauteur du conteneur */
-    object-fit: contain; /* Garde l'image complète sans la couper */
-}
-
+        .carousel-item img {
+            width: auto;
+            height: 100%;  /* Remplit la hauteur et garde le ratio */
+            object-fit: contain; /* Assure que l'image reste entière */
+        }
     </style>
 </head>
 <body>
@@ -156,7 +159,7 @@
             const rect = searchBar.getBoundingClientRect();
             dropdown.style.width = `${rect.width}px`;
             dropdown.style.left = `${rect.left}px`;
-            dropdown.style.top = `${rect.bottom + 10}px`;
+            dropdown.style.top = `${rect.bottom + 5}px`;
         }
 
         window.addEventListener('resize', positionDropdown);
@@ -176,6 +179,10 @@
 
         setInterval(moveCarousel, 2500); // Change d'image toutes les 2.5 secondes
     </script>
+
+</body>
+</html>
+
 
 <!-- Script Voiceflow pour intégrer le nouveau chatbot avec extensions -->
     <script type="module">
