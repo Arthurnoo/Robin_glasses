@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Présentation Lunettes 3D</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
         body {
             display: flex;
@@ -11,7 +12,7 @@
             align-items: center;
             flex-direction: column;
             height: 100vh;
-            background-color: #ffffff;
+            background: linear-gradient(to bottom, #ffffff, #0E3925); /* Blanc vers vert Rolex */
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
@@ -19,19 +20,6 @@
         model-viewer {
             width: 400px;
             height: 300px;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotateY(0deg);
-            }
-            to {
-                transform: rotateY(360deg);
-            }
-        }
-
-        model-viewer {
-            animation: rotate 6s linear infinite; /* Accélération de la rotation */
         }
 
         #search-bar {
@@ -47,7 +35,16 @@
     </style>
 </head>
 <body>
-    <model-viewer src="ray-ban.glb" alt="Lunettes 3D" auto-rotate camera-controls ar shadow-intensity="1" environment-image="neutral" exposure="1.2" style="background-color: transparent;" ></model-viewer>
+    <model-viewer 
+        src="ray-ban.glb" 
+        alt="Lunettes 3D" 
+        auto-rotate 
+        camera-controls 
+        ar 
+        shadow-intensity="1" 
+        exposure="1.2">
+    </model-viewer>
+
     <input type="text" id="search-bar" placeholder="Rechercher...">
 </body>
 </html>
