@@ -68,40 +68,39 @@
             z-index: 10;
         }
 
-/* Carrousel 3:4 */
-        .carousel-container {
-            width: 60vw;
-            max-width:320px
-            overflow: hidden;
-            position: relative;
-            margin-top: 20px;
-            border-radius: 15px;
-            height: 80px; /* Ajuste la hauteur pour respecter 3:4 */
-        }
+    /* Carrousel 3:4 */
+    .carousel-container {
+    width: 90%; /* Augmente la largeur */
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 15px;
+    height: 60vh; /* Augmente la hauteur pour mieux voir l'image */
+    }
 
-        .carousel-track {
-            display: flex;
-            gap: 10px;
-            transition: transform 0.5s ease-in-out;
-        }
+    .carousel-track {
+    display: flex;
+    gap: 10px;
+    transition: transform 0.5s ease-in-out;
+    }
 
-        .carousel-item {
-            flex: 0 0 100%;
-            height: 100%; /* Ajuste pour respecter 3:4 */
-            background-color: #006039;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px;
-            overflow: hidden;
-        }
+    .carousel-item {
+    flex: 0 0 33.3%;
+    height: 100%; /* Remplit toute la hauteur du container */
+    background-color: #006039;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    }
 
-        .carousel-item img {
-            width: auto;
-            height: 100%;  /* Remplit la hauteur et garde le ratio */
-            object-fit: contain; /* Assure que l'image reste entière */
-            max-width: 100%; /* Ne dépasse pas la largeur */
-        }
+    .carousel-item img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; /* Remplit complètement le conteneur sans déformation */
+    }
+
     </style>
 </head>
 <body>
