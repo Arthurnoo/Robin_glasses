@@ -139,51 +139,46 @@
         }
 
         @media screen and (max-width: 767px) {
+           /* Positionner la description sous la barre de recherche */
+            #mobile-dropdown {
+                display: none;
+                width: 90%;
+                max-width: 1000px;
+                background: rgba(255, 255, 255, 0.9); /* Fond semi-transparent */
+                color: black;
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+                text-align: center;
+                position: relative; /* Permet de contrôler son placement */
+                margin-top: 10px; /* Espace sous la barre de recherche */
+                z-index: 10; /* Met la description au-dessus du carrousel */
+            }
+
+            /* Adapter la taille du carrousel pour laisser de l'espace en dessous */
             .carousel-container {
                 width: 100%;
                 height: auto;
-                position: relative; /* Permet aux descriptions de se superposer */
-            }
-
-            .carousel-track {
-                display: flex;
-                transition: transform 0.5s ease-in-out;
+                position: relative; /* S'assurer qu'il reste sous les descriptions */
+                margin-top: 10px; /* Laisser un espace sous les descriptions */
             }
 
             .carousel-item {
                 flex: 0 0 100%;
-                height: auto; /* Adapte la hauteur à l'image */
+                height: 60vh; /* Augmenter la hauteur de l'image */
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
-                position: relative;
             }
 
             .carousel-item img {
                 width: 100%;
-                height: auto; /* Permet de garder les proportions de l'image */
+                height: 100%;
                 object-fit: cover;
             }
-
-            /* Met les descriptions par-dessus l'image */
-            #mobile-dropdown {
-                position: absolute;
-                bottom: 10%; /* Place la description en bas de l'image */
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                background: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
-                color: black;
-                border-radius: 15px;
-                padding: 10px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-                font-size: 16px;
-                text-align: center;
-            }
         }
-
-
 
     </style>
 </head>
@@ -193,21 +188,19 @@
     <div id="search-bar">
         <div class="search-item" data-text="Vous répondez simplement aux questions du chatbot.">Les démarches</div>
         <div class="dropdown-container"></div>
-
         <div class="search-item" data-text="Il vous suffit de téléverser une photocopie de votre carte mutuelle, l'attestation de droits à l'assurance maladie et votre tableau de garantie mutuelle si vous en avez un.">Les documents</div>
         <div class="dropdown-container"></div>
-
         <div class="search-item" data-text="On s'occupe de toutes les autres démarches avec l'opticien. Il vous suffira de payer 20€ pour y avoir accès.">Qui ?</div>
         <div class="dropdown-container"></div>
-
         <div class="search-item" data-text="La livraison est disponible partout en France gratuitement.">Où ?</div>
         <div class="dropdown-container"></div>
     </div>
 
+    <!-- Boîte de description sous la barre de recherche -->
+    <div id="mobile-dropdown"></div>
 
     <!-- Carrousel (placé sous les descriptions) -->
     <div class="carousel-container">
-        <div id="mobile-dropdown"></div>
         <div class="carousel-track">
             <div class="carousel-item"><img src="Lunettes_1.jpg" alt="Lunettes 1"></div>
             <div class="carousel-item"><img src="Lunettes_2.jpg" alt="Lunettes 2"></div>
