@@ -90,11 +90,18 @@
                 color: white;
             }
 
-            .dropdown-container {
+            #mobile-dropdown {
                 display: none;
-                position: relative;
-                width: 100%;
-                margin-top: 10px;
+                width: 90%; /* Même largeur que la barre de recherche */
+                max-width: 1000px;
+                background: white;
+                color: black;
+                border-radius: 15px;
+                padding: 15px;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+                text-align: center;
+                margin-top: 10px; /* Espacement sous la barre */
             }
         }
 
@@ -150,6 +157,10 @@
         <div class="dropdown-container"></div>
     </div>
 
+    <!-- Boîte déroulante pour mobile -->
+    <div id="mobile-dropdown"></div>
+
+
     <!-- Carrousel -->
     <div class="carousel-container">
         <div class="carousel-track">
@@ -164,6 +175,7 @@
 
     <script>
         const searchItems = document.querySelectorAll('.search-item');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
 
         searchItems.forEach(item => {
             item.addEventListener('mouseenter', () => {
@@ -187,25 +199,17 @@
 
             item.addEventListener('click', () => {
                 if (window.innerWidth <= 767) {
-                    let dropdown = item.nextElementSibling;
-
-                    // Masque tous les autres dropdowns avant d'afficher celui du clic
-                    document.querySelectorAll('.dropdown-container').forEach(d => {
-                        if (d !== dropdown) {
-                            d.style.display = 'none';
-                        }
-                    });
-
-                    if (dropdown.style.display === 'block') {
-                        dropdown.style.display = 'none';
+                    if (mobileDropdown.style.display === 'block' && mobileDropdown.textContent === item.getAttribute('data-text')) {
+                        mobileDropdown.style.display = 'none';
                     } else {
-                        dropdown.textContent = item.getAttribute('data-text');
-                        dropdown.style.display = 'block';
+                        mobileDropdown.textContent = item.getAttribute('data-text');
+                        mobileDropdown.style.display = 'block';
                     }
                 }
             });
         });
 
+        
         // CAROUSEL
         const track = document.querySelector('.carousel-track');
         let index = 0;
