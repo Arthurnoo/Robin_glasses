@@ -77,15 +77,6 @@
             }
         }
 
-        @media screen and (max-width: 767px) {
-            #dropdown-container {
-                position: relative;
-                top: auto;
-                left: auto;
-                margin-top: 10px;
-            }
-        }
-
         <script>
             document.querySelectorAll('.search-item').forEach(item => {
                 item.addEventListener('click', function() {
@@ -112,6 +103,15 @@
             text-align: center;
             margin-top: 5px;
             z-index: 10;
+        }
+
+        @media screen and (max-width: 767px) {
+        #dropdown-container {
+            position: relative;
+            top: auto;
+            left: auto;
+            margin-top: 10px;
+            }
         }
 
         /* Carrousel 3:4 */
