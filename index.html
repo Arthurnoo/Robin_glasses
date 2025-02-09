@@ -138,6 +138,35 @@
             object-fit: cover;
         }
 
+        @media screen and (max-width: 767px) {
+        .carousel-container {
+            width: 100%; /* Prend toute la largeur de l'écran */
+            height: auto; /* Ajuste la hauteur automatiquement */
+            margin-top: 20px; /* Décale les images sous les descriptions */
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%; /* Une seule image visible à la fois */
+            height: 50vh; /* Augmente la hauteur pour prendre plus de place */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Remplit sans déformation */
+        }
+    }
+
+
     </style>
 </head>
 <body>
@@ -157,11 +186,10 @@
         <div class="dropdown-container"></div>
     </div>
 
-    <!-- Boîte déroulante pour mobile -->
+    <!-- Zone de description qui apparaît sous la barre de recherche -->
     <div id="mobile-dropdown"></div>
 
-
-    <!-- Carrousel -->
+    <!-- Carrousel (placé sous les descriptions) -->
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="carousel-item"><img src="Lunettes_1.jpg" alt="Lunettes 1"></div>
@@ -215,14 +243,24 @@
         let index = 0;
 
         function moveCarousel() {
-            index++;
-            if (index > 3) {
-                index = 0;
+            if (window.innerWidth <= 767) {
+                // Mobile: Défile une image à la fois
+                index++;
+                if (index >= 6) {
+                    index = 0;
+                }
+                track.style.transform = `translateX(-${index * 100}%)`;
+            } else {
+                // Desktop: Garde la version actuelle
+                index++;
+                if (index > 3) { // 6 images, boucle à 3 pour garder 3 visibles
+                    index = 0;
+                }
+                track.style.transform = `translateX(-${index * 33.3}%)`;
             }
-            track.style.transform = `translateX(-${index * 33.3}%)`;
         }
 
-        setInterval(moveCarousel, 2500);
+setInterval(moveCarousel, 2500);
     </script>
 
 </body>
