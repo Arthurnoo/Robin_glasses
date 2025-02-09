@@ -22,72 +22,48 @@
             justify-content: center;
             gap: 40px;
             background-color: #057af7;
-            padding: 10px; /* Rend la barre plus fine */
-            height: 30px; /* Diminue la hauteur */
+            padding: 10px;
+            height: 30px;
             border-radius: 40px;
-            margin-top: 20px; /* Remonte la barre */
+            margin-top: 20px;
             width: 90%;
             max-width: 1000px;
             position: relative;
             color: white;
             font-weight: bold;
             font-size: 20px;
-            align-items: center; /* Centre le texte verticalement */
+            align-items: center;
         }
 
         /* Styles spécifiques pour mobile */
         @media screen and (max-width: 767px) {
-        #search-bar {
-            flex-direction: row; /* Organisation des éléments */
-            gap: 10px; /* Réduit l'écart entre les mots */
-            padding: 5px; /* Diminue l'épaisseur */
-            height: 20px; /* Augmente un peu la hauteur */
-            margin-top: 120px; /* Abaisse la barre */
-            font-size: 14px; /* Réduit la taille du texte */
-            width: 95%; /* Ajuste la largeur */
+            #search-bar {
+                flex-direction: row;
+                gap: 10px;
+                padding: 5px;
+                height: 40px;
+                margin-top: 120px;
+                font-size: 14px;
+                width: 95%;
             }
         }
 
         .search-item {
-            padding: 8px 20px; /* Ajuste l'espacement */
+            padding: 8px 20px;
             cursor: pointer;
             border-radius: 15px;
             position: relative;
             display: flex;
-            align-items: center; /* Centre le texte verticalement */
-            justify-content: center; /* Centre horizontalement */
+            align-items: center;
+            justify-content: center;
         }
 
         .search-item:hover {
             background-color: #057af7;
         }
 
-        @media screen and (max-width: 767px) {
-            .search-item {
-                padding: 5px 15px; /* Réduit l'espacement pour mobile */
-                font-size: 14px; /* Réduit la taille du texte */
-            }
-            
-            .search-item:active + #dropdown-container,
-            .search-item.clicked + #dropdown-container {
-                display: block;
-                position: relative; /* Permet à la boîte d'apparaître juste en dessous */
-                width: 100%;
-                margin-top: 10px;
-            }
-        }
-
-        <script>
-            document.querySelectorAll('.search-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.getElementById('dropdown-container').textContent = this.getAttribute('data-text');
-                    document.getElementById('dropdown-container').style.display = 'block';
-                });
-            });
-        </script>
-
         /* Boîte déroulante */
-        #dropdown-container {
+        .dropdown-container {
             display: none;
             position: absolute;
             top: 100%;
@@ -105,23 +81,31 @@
             z-index: 10;
         }
 
+        /* Styles spécifiques pour mobile */
         @media screen and (max-width: 767px) {
-        #dropdown-container {
-            position: relative;
-            top: auto;
-            left: auto;
-            margin-top: 10px;
+            .search-item {
+                padding: 5px 15px;
+                font-size: 14px;
+                font-weight: bold;
+                color: white;
+            }
+
+            .dropdown-container {
+                display: none;
+                position: relative;
+                width: 100%;
+                margin-top: 10px;
             }
         }
 
-        /* Carrousel 3:4 */
+        /* Carrousel */
         .carousel-container {
-            width: 90%; /* Augmente la largeur */
+            width: 90%;
             overflow: hidden;
             position: relative;
             margin-top: 20px;
             border-radius: 15px;
-            height: 100vh; /* Augmente la hauteur pour mieux voir l'image */
+            height: 100vh;
         }
 
         .carousel-track {
@@ -132,7 +116,7 @@
 
         .carousel-item {
             flex: 0 0 33.3%;
-            height: 100%; /* Remplit toute la hauteur du container */
+            height: 100%;
             background-color: #2400FF;
             display: flex;
             justify-content: center;
@@ -143,8 +127,8 @@
 
         .carousel-item img {
             width: 100%;
-            height: 100%; 
-            object-fit: cover; /* Remplit complètement le conteneur sans déformation */
+            height: 100%;
+            object-fit: cover;
         }
 
     </style>
@@ -154,13 +138,17 @@
     <!-- Barre de recherche -->
     <div id="search-bar">
         <div class="search-item" data-text="Vous répondez simplement aux questions du chatbot.">Les démarches</div>
-        <div class="search-item" data-text="Il vous suffit de téléverser une photocopie de votre carte mutuelle, l'attestation de droits à l'assurance maladie et votre tableau de garantie mutuelle si vous en avez un.">Les documents</div>
-        <div class="search-item" data-text="On s'occupe de toutes les autres démarches avec l'opticien. Il vous suffira de payer 20€ pour y avoir accès.">Qui ?</div>
-        <div class="search-item" data-text="La livraison est disponible partout en france gratuitement.">Où ?</div>
-    </div>
+        <div class="dropdown-container"></div>
 
-    <!-- Zone de texte sous la barre de recherche -->
-    <div id="dropdown-container"></div>
+        <div class="search-item" data-text="Il vous suffit de téléverser une photocopie de votre carte mutuelle, l'attestation de droits à l'assurance maladie et votre tableau de garantie mutuelle si vous en avez un.">Les documents</div>
+        <div class="dropdown-container"></div>
+
+        <div class="search-item" data-text="On s'occupe de toutes les autres démarches avec l'opticien. Il vous suffira de payer 20€ pour y avoir accès.">Qui ?</div>
+        <div class="dropdown-container"></div>
+
+        <div class="search-item" data-text="La livraison est disponible partout en France gratuitement.">Où ?</div>
+        <div class="dropdown-container"></div>
+    </div>
 
     <!-- Carrousel -->
     <div class="carousel-container">
@@ -176,41 +164,47 @@
 
     <script>
         const searchItems = document.querySelectorAll('.search-item');
-        const dropdown = document.getElementById('dropdown-container');
-        const searchBar = document.getElementById('search-bar');
 
         searchItems.forEach(item => {
             item.addEventListener('mouseenter', () => {
-                dropdown.textContent = item.getAttribute('data-text');
-                dropdown.style.display = 'block';
+                if (window.innerWidth > 767) {
+                    let dropdown = item.nextElementSibling;
+                    dropdown.textContent = item.getAttribute('data-text');
+                    dropdown.style.display = 'block';
+                }
             });
 
             item.addEventListener('mouseleave', () => {
-                setTimeout(() => {
-                    if (!dropdown.matches(':hover')) {
+                if (window.innerWidth > 767) {
+                    let dropdown = item.nextElementSibling;
+                    setTimeout(() => {
+                        if (!dropdown.matches(':hover')) {
+                            dropdown.style.display = 'none';
+                        }
+                    }, 200);
+                }
+            });
+
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    let dropdown = item.nextElementSibling;
+
+                    // Masque tous les autres dropdowns avant d'afficher celui du clic
+                    document.querySelectorAll('.dropdown-container').forEach(d => {
+                        if (d !== dropdown) {
+                            d.style.display = 'none';
+                        }
+                    });
+
+                    if (dropdown.style.display === 'block') {
                         dropdown.style.display = 'none';
+                    } else {
+                        dropdown.textContent = item.getAttribute('data-text');
+                        dropdown.style.display = 'block';
                     }
-                }, 200);
+                }
             });
         });
-
-        dropdown.addEventListener('mouseenter', () => {
-            dropdown.style.display = 'block';
-        });
-
-        dropdown.addEventListener('mouseleave', () => {
-            dropdown.style.display = 'none';
-        });
-
-        function positionDropdown() {
-            const rect = searchBar.getBoundingClientRect();
-            dropdown.style.width = `${rect.width}px`;
-            dropdown.style.left = `${rect.left}px`;
-            dropdown.style.top = `${rect.bottom + 5}px`;
-        }
-
-        window.addEventListener('resize', positionDropdown);
-        window.addEventListener('load', positionDropdown);
 
         // CAROUSEL
         const track = document.querySelector('.carousel-track');
@@ -218,17 +212,18 @@
 
         function moveCarousel() {
             index++;
-            if (index > 3) { // 6 images, boucle à 3 pour garder 3 images visibles
+            if (index > 3) {
                 index = 0;
             }
             track.style.transform = `translateX(-${index * 33.3}%)`;
         }
 
-        setInterval(moveCarousel, 2500); // Change d'image toutes les 2.5 secondes
+        setInterval(moveCarousel, 2500);
     </script>
 
 </body>
 </html>
+
 
 
 <!-- Script Voiceflow pour intégrer le nouveau chatbot avec extensions -->
