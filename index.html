@@ -373,22 +373,28 @@
     </script>
 
     <script type="text/javascript">
-    function sleep(ms) {
-    return new Promise(resolve =>setTimeout(resolve, ms));
-    }
-    async function runCode()
-    if (window.innerWidth >= 1024) (// Check if the screen width is greater than or equal to 1024
-    (desktop)
-    let element = document.querySelector(".vfrc-launcher");
-    while (!element) {
-    element = document.querySelector(".vfrc-launcher");
-    await sleep(100):
-    }
-    element.click():
-    }
-    }
-    runCode():
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function openChatbotWhenReady() {
+            console.log("⏳ Attente du chargement complet de Voiceflow...");
+    
+            // Attendre que l'API de Voiceflow soit bien chargée
+            while (!window.voiceflow || !window.voiceflow.chat || !window.voiceflow.chat.open) {
+                await sleep(500);
+            }
+
+            console.log("✅ Voiceflow chargé, ouverture du chatbot...");
+
+            // Ouvrir directement le chatbot via l'API officielle
+            window.voiceflow.chat.open();
+        }
+
+        // Exécuter après le chargement du DOM
+        document.addEventListener("DOMContentLoaded", openChatbotWhenReady);
     </script>
+
   
 </body>
 </html>
